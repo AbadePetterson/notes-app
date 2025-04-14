@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use function Laravel\Prompts\text;
 
@@ -37,6 +38,11 @@ class AuthController extends Controller
         $username = $request->input('text_username');
         $password = $request->input('text_password');
 
-        echo 'OK!';
+        try{
+            DB::connection()->getPdo();
+            echo 'Connection is OK!';
+        } catch (\PDOException  $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
     }
 }
