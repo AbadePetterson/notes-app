@@ -14,9 +14,9 @@ class UserTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-            'username' => 'user1@gmail.com',
-            'password' => bcrypt('123456'),
-            'created_at' => date('Y-m-d H:i:s')
+                'username' => 'user1@gmail.com',
+                'password' => bcrypt('123456'),
+                'created_at' => date('Y-m-d H:i:s')
             ],
             [
                 'username' => 'user2@gmail.com',
