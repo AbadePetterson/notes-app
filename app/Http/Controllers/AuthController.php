@@ -39,14 +39,14 @@ class AuthController extends Controller
         $username = $request->input('text_username');
         $password = $request->input('text_password');
 
-        //check if users exists
+    
         $user = User::where('username', $username)->where('deleted_at', null)->first();
 
         if (!$user) {
             return redirect()->back()->withInput()->with(['loginError' => 'user or password not found!']);
         }
 
-        //check if password is correct
+        
         if(!password_verify($password, $user->password)){
             return redirect()->back()->withInput()->with(['loginError' => 'user or password not found!']);
         }
@@ -54,7 +54,7 @@ class AuthController extends Controller
         $user->last_login = date('Y-m-d H:i:s');
         $user->save();
 
-        //login user
+        
         session([
             'user' => $user->id,
             'username' => $user->username
